@@ -19,7 +19,8 @@ export default async function handler(req, res) {
       method: req.method,
       headers: {
         ...req.headers,
-        host: new URL(url).host
+        host: new URL(url).host,
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36'
       },
       body: ['GET', 'HEAD'].includes(req.method) ? undefined : req.body
     });
