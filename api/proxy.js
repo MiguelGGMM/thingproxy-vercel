@@ -26,8 +26,14 @@ export default async function handler(req, res) {
     });
 
     const contentType = upstreamRes.headers.get('content-type');
+    // res.setHeader('Access-Control-Allow-Origin', '*');
+    // res.setHeader('Access-Control-Allow-Headers', '*');
+
+    res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
+    res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp'); // optional
+    res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');    // optional
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', '*');
+
     if (contentType) res.setHeader('Content-Type', contentType);
 
     const data = await upstreamRes.arrayBuffer();
